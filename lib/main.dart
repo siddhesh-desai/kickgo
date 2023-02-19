@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/pages/register_page.dart';
+import 'package:kickgo/utils/routes.dart';
 import 'pages/login_page.dart';
 
 void main() {
@@ -15,10 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      initialRoute: MyRoutes.loginRoute,
       home: LoginPage(),
-      // initialRoute: '/',
       routes: {
-        // '/': (context) => LoginPage(),
+        MyRoutes.loginRoute: (context) => LoginPage(),
+        MyRoutes.registerRoute: (context) => RegisterPage(),
       },
     );
   }

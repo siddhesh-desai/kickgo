@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/pages/login_page.dart';
 import 'package:kickgo/utils/routes.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,35 +13,38 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(16, 50, 16, 16),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
                   child:
 
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
                     image: AssetImage("assets/images/logo_img.png"),
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                Text(
-                  "Welcome to KickGo",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 24,
-                    color: Color(0xff8bc34a),
+                    height: 100,
+                    width: 140,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 16),
+                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                  child: Text(
+                    "Create New Account",
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 24,
+                      color: Color(0xff8bc34a),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 16),
                   child: TextField(
                     controller: TextEditingController(),
                     obscureText: false,
@@ -53,42 +57,86 @@ class LoginPage extends StatelessWidget {
                       color: Color(0xff000000),
                     ),
                     decoration: InputDecoration(
-                        disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide:
-                              BorderSide(color: Color(0x00ffffff), width: 1),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide:
-                              BorderSide(color: Color(0x00ffffff), width: 1),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide:
-                              BorderSide(color: Color(0x00ffffff), width: 1),
-                        ),
-                        hintText: "Email",
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Color(0xff9f9d9d),
-                        ),
-                        filled: true,
-                        fillColor: Color(0x21ffc107),
-                        isDense: false,
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        prefixIcon: Icon(Icons.mail,
-                            color: Color(0xffff9800), size: 24)),
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide:
+                            BorderSide(color: Color(0x00ffffff), width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide:
+                            BorderSide(color: Color(0x00ffffff), width: 1),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide:
+                            BorderSide(color: Color(0x00ffffff), width: 1),
+                      ),
+                      hintText: "Name",
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 14,
+                        color: Color(0xff9f9d9d),
+                      ),
+                      filled: true,
+                      fillColor: Color(0x21ffc107),
+                      isDense: false,
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      prefixIcon: Icon(Icons.account_box,
+                          color: Color(0xffff9800), size: 22),
+                    ),
+                  ),
+                ),
+                TextField(
+                  controller: TextEditingController(),
+                  obscureText: false,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 14,
+                    color: Color(0xff000000),
+                  ),
+                  decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide(color: Color(0x00ffffff), width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide(color: Color(0x00ffffff), width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide:
+                          BorderSide(color: Color(0x00ffffff), width: 1),
+                    ),
+                    hintText: "Email Address",
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      color: Color(0xff9f9d9d),
+                    ),
+                    filled: true,
+                    fillColor: Color(0x21ffc107),
+                    isDense: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    prefixIcon:
+                        Icon(Icons.mail, color: Color(0xffff9800), size: 22),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                   child: TextField(
                     controller: TextEditingController(),
-                    obscureText: true,
+                    obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     style: TextStyle(
@@ -126,12 +174,14 @@ class LoginPage extends StatelessWidget {
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                       prefixIcon:
-                          Icon(Icons.lock, color: Color(0xffff9800), size: 24),
+                          Icon(Icons.lock, color: Color(0xffff9800), size: 22),
+                      suffixIcon: Icon(Icons.visibility,
+                          color: Color(0xffff9800), size: 20),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 16),
+                  padding: EdgeInsets.fromLTRB(0, 15, 0, 8),
                   child: MaterialButton(
                     onPressed: () {},
                     color: Color(0xff8bc34a),
@@ -141,7 +191,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     padding: EdgeInsets.all(16),
                     child: Text(
-                      "Log In",
+                      "Register",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -149,7 +199,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     textColor: Color(0xffffffff),
-                    height: 40,
+                    height: 50,
                     minWidth: MediaQuery.of(context).size.width,
                   ),
                 ),
@@ -160,8 +210,8 @@ class LoginPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
-                        "Don't Have an account?",
+                      Text(
+                        "Have an account?",
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
@@ -175,11 +225,10 @@ class LoginPage extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, MyRoutes.registerRoute);
+                            Navigator.pushNamed(context, MyRoutes.loginRoute);
                           },
-                          child: const Text(
-                            "Sign Up",
+                          child: Text(
+                            "Sign In",
                             textAlign: TextAlign.start,
                             overflow: TextOverflow.clip,
                             style: TextStyle(
