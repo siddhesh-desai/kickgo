@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/pages/home_page.dart';
 import 'package:kickgo/pages/register_page.dart';
 import 'package:kickgo/utils/routes.dart';
+import 'package:kickgo/widgets/themes.dart';
 import 'pages/login_page.dart';
 
 void main() {
@@ -14,14 +16,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'KickGo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
       initialRoute: MyRoutes.loginRoute,
-      home: LoginPage(),
+      home: HomePage(),
       routes: {
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.registerRoute: (context) => RegisterPage(),
+        MyRoutes.homeRoute: (context) => HomePage(),
       },
     );
   }
