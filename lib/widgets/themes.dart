@@ -11,7 +11,6 @@ class MyTheme {
           iconTheme: IconThemeData(
             color: Color(0xff295e2b),
           ),
-          textTheme: Theme.of(context).textTheme,
         ),
       );
 

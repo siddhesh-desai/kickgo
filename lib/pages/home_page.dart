@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/models/matches.dart';
 import 'package:kickgo/widgets/drawer.dart';
+
+import '../widgets/match_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -28,12 +31,13 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Container(
-          child: Container(
-            child: Text("Welcome"),
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: MatchModel.matches.length,
+        itemBuilder: (context, index) {
+          return MatchWidget(
+            match: MatchModel.matches[index],
+          );
+        },
       ),
       drawer: MyDrawer(),
     );
