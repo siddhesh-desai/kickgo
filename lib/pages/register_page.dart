@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kickgo/pages/login_page.dart';
 import 'package:kickgo/utils/routes.dart';
 
 final TextEditingController _nameController = TextEditingController();
@@ -8,6 +7,8 @@ final TextEditingController _passController = TextEditingController();
 
 class RegisterPage extends StatelessWidget {
   final _formKeyRegister = GlobalKey<FormState>();
+
+  RegisterPage({super.key});
 
   moveToHome(BuildContext context) {
     if (_formKeyRegister.currentState!.validate()) {
