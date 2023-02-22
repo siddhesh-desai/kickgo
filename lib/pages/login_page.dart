@@ -7,9 +7,11 @@ final TextEditingController _ceppController = TextEditingController();
 class LoginPage extends StatelessWidget {
   final _formKeyLogin = GlobalKey<FormState>();
 
+  LoginPage({super.key});
+
   moveToHome(BuildContext context) {
     if (_formKeyLogin.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Sending Message"),
       ));
     }
@@ -18,7 +20,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       body: Align(
         alignment: Alignment.center,
         child: Padding(

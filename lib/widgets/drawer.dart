@@ -15,10 +15,25 @@ class MyDrawer extends StatelessWidget {
             child: UserAccountsDrawerHeader(
               margin: EdgeInsets.zero,
               decoration: BoxDecoration(
-                color: Color(0xffffc107),
+                image: DecorationImage(
+                  image: AssetImage('assets/images/card_bg.png'),
+                  fit: BoxFit.fill,
+                  opacity: 0.9,
+                ),
               ),
-              accountEmail: Text("siddheshdesai777@gmail.com"),
-              accountName: Text("Siddhesh Desai"),
+              accountEmail: Text(
+                "siddheshdesai777@gmail.com",
+                style: TextStyle(
+                  color: Colors.amber[50],
+                  fontSize: 13,
+                ),
+              ),
+              accountName: Text(
+                "Siddhesh Desai",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(imageUrl),
               ),
@@ -27,53 +42,53 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.home,
-              color: Color(0xffffc107),
+              color: Color(0xff56B149),
             ),
             title: Text(
               "Home",
               style: TextStyle(
-                color: Color(0xffffc107),
+                color: Color(0xff56B149),
               ),
-              textScaleFactor: 1,
+              textScaleFactor: 1.2,
             ),
           ),
           ListTile(
             leading: Icon(
               Icons.airplane_ticket,
-              color: Color(0xffffc107),
+              color: Color(0xff56B149),
             ),
             title: Text(
               "My Tickets",
               style: TextStyle(
-                color: Color(0xffffc107),
+                color: Color(0xff56B149),
               ),
-              textScaleFactor: 1,
+              textScaleFactor: 1.2,
             ),
           ),
           ListTile(
             leading: Icon(
               Icons.person_2,
-              color: Color(0xffffc107),
+              color: Color(0xff56B149),
             ),
             title: Text(
               "My Profile",
               style: TextStyle(
-                color: Color(0xffffc107),
+                color: Color(0xff56B149),
               ),
-              textScaleFactor: 1,
+              textScaleFactor: 1.2,
             ),
           ),
           ListTile(
             leading: Icon(
               Icons.logout,
-              color: Color(0xffffc107),
+              color: Color(0xff56B149),
             ),
             title: Text(
               "Logout",
               style: TextStyle(
-                color: Color(0xffffc107),
+                color: Color(0xff56B149),
               ),
-              textScaleFactor: 1,
+              textScaleFactor: 1.2,
             ),
           ),
         ],
