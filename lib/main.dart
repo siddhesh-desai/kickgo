@@ -3,7 +3,6 @@ import 'package:kickgo/pages/about_page.dart';
 import 'package:kickgo/pages/details_page.dart';
 import 'package:kickgo/pages/home_page.dart';
 import 'package:kickgo/pages/profile_page.dart';
-import 'package:kickgo/pages/payment.dart';
 import 'package:kickgo/pages/register_page.dart';
 import 'package:kickgo/pages/ticket_page.dart';
 import 'package:kickgo/utils/routes.dart';
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
         MyRoutes.ticketRoute: (context) => TicketPage(),
         MyRoutes.profileRoute: (context) => ProfilePage(),
         MyRoutes.aboutRoute: (context) => AboutPage(),
-        MyRoutes.paymentRoute: (context) => PaymentPage(),
       },
     );
   }
