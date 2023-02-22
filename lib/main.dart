@@ -9,7 +9,6 @@ import 'package:kickgo/pages/ticket_page.dart';
 import 'package:kickgo/utils/routes.dart';
 import 'package:kickgo/widgets/themes.dart';
 import 'pages/login_page.dart';
-import 'package:pay/pay.dart';
 
 void main() {
   runApp(const MyApp());
