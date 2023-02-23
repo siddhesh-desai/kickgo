@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kickgo/models/matches.dart';
 import 'package:kickgo/widgets/drawer.dart';
 import 'dart:convert';

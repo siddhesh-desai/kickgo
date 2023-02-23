@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/main.dart';
+import 'package:kickgo/utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl =
-        "https://media.licdn.com/dms/image/D4D03AQGEQz_LSVgnMQ/profile-displayphoto-shrink_400_400/0/1664269945043?e=1682553600&v=beta&t=ZuUiPqdP8HL1of_cJjuHuSpY3zELfO2oYccDF2jpbAw";
     return Drawer(
       child: ListView(
         children: [
@@ -14,7 +14,7 @@ class MyDrawer extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
               margin: EdgeInsets.zero,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/card_bg.png'),
                   fit: BoxFit.fill,
@@ -22,29 +22,37 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
               accountEmail: Text(
-                "siddheshdesai777@gmail.com",
+                MyApp.email,
                 style: TextStyle(
                   color: Colors.amber[50],
-                  fontSize: 13,
+                  fontSize: 15,
                 ),
               ),
               accountName: Text(
-                "Siddhesh Desai",
-                style: TextStyle(
+                MyApp.name,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontSize: 17,
                 ),
               ),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(imageUrl),
+              currentAccountPicture: const Icon(
+                Icons.account_box,
+                color: Colors.black,
+                size: 75,
               ),
             ),
           ),
           ListTile(
-            leading: Icon(
+            selected: true,
+            selectedTileColor: Colors.grey[200],
+            onTap: () {
+              Navigator.pushNamed(context, MyRoutes.homeRoute);
+            },
+            leading: const Icon(
               Icons.home,
               color: Color(0xff56B149),
             ),
-            title: Text(
+            title: const Text(
               "Home",
               style: TextStyle(
                 color: Color(0xff56B149),
@@ -53,24 +61,14 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
-              Icons.airplane_ticket,
-              color: Color(0xff56B149),
-            ),
-            title: Text(
-              "My Tickets",
-              style: TextStyle(
-                color: Color(0xff56B149),
-              ),
-              textScaleFactor: 1.2,
-            ),
-          ),
-          ListTile(
-            leading: Icon(
+            onTap: () {
+              Navigator.pushNamed(context, MyRoutes.profileRoute);
+            },
+            leading: const Icon(
               Icons.person_2,
               color: Color(0xff56B149),
             ),
-            title: Text(
+            title: const Text(
               "My Profile",
               style: TextStyle(
                 color: Color(0xff56B149),
@@ -79,11 +77,33 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
+            onTap: () {
+              Navigator.pushNamed(context, MyRoutes.aboutRoute);
+            },
+            leading: const Icon(
+              Icons.info,
+              color: Color(0xff56B149),
+            ),
+            title: const Text(
+              "About Us",
+              style: TextStyle(
+                color: Color(0xff56B149),
+              ),
+              textScaleFactor: 1.2,
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              MyApp.userId = "";
+              MyApp.name = "";
+              MyApp.email = "";
+              Navigator.pushReplacementNamed(context, MyRoutes.loginRoute);
+            },
+            leading: const Icon(
               Icons.logout,
               color: Color(0xff56B149),
             ),
-            title: Text(
+            title: const Text(
               "Logout",
               style: TextStyle(
                 color: Color(0xff56B149),
