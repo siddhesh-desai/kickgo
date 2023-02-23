@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kickgo/pages/about_page.dart';
 import 'package:kickgo/pages/details_page.dart';
@@ -8,8 +9,11 @@ import 'package:kickgo/pages/ticket_page.dart';
 import 'package:kickgo/utils/routes.dart';
 import 'package:kickgo/widgets/themes.dart';
 import 'pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -23,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
-      initialRoute: MyRoutes.aboutRoute,
+      initialRoute: MyRoutes.loginRoute,
       home: const HomePage(),
       routes: {
         MyRoutes.loginRoute: (context) => LoginPage(),

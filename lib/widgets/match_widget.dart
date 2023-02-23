@@ -18,10 +18,10 @@ class MatchWidget extends StatelessWidget {
               color: Colors.orange.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 7,
-              offset: Offset(0, 0), // changes position of shadow
+              offset: const Offset(0, 0), // changes position of shadow
             ),
           ],
-          image: DecorationImage(
+          image: const DecorationImage(
               image: AssetImage('assets/images/card_bg.png'),
               opacity: 0.95,
               fit: BoxFit.fitWidth),
@@ -32,7 +32,7 @@ class MatchWidget extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +68,7 @@ class MatchWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -107,7 +107,7 @@ class MatchWidget extends StatelessWidget {
                   children: [
                     TextButton(
                       style: TextButton.styleFrom(
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 2,
                           color: Colors.black,
                         ),
@@ -115,7 +115,7 @@ class MatchWidget extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       onPressed: () {},
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                         child: Text(
                           "Rs. 20",
@@ -153,13 +153,13 @@ class MatchWidget extends StatelessWidget {
                     TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.black,
-                        side: BorderSide(
+                        side: const BorderSide(
                           width: 1,
                           color: Colors.orangeAccent,
                         ),
                       ),
                       onPressed: () {},
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
                         child: Text(
                           "Book Tickets",

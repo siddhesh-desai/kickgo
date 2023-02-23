@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "133879656719",
+    "firebase_url": "https://kickgo-1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kickgo-1",
+    "storage_bucket": "kickgo-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133879656719:android:7f4e4251882877b7370e7a",
+        "android_client_info": {
+          "package_name": "com.example.kickgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133879656719-il9kul3cgjh02kv8n0au49n04john3vv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSZWJpelz42wYhTrOBU0UjBorJzNxLihI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133879656719-il9kul3cgjh02kv8n0au49n04john3vv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "133879656719-g86qr4rnf75ekjr4fkoo9kuagdro20gr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kickgo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
