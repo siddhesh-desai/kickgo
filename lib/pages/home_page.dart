@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:kickgo/models/matches.dart';
+import 'package:kickgo/utils/routes.dart';
 import 'package:kickgo/widgets/drawer.dart';
-import 'dart:convert';
 import '../widgets/match_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,29 +14,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    loadData();
-  }
-
+  //For Switching between Matches and Tickets
   int _selectedIndex = 0;
 
-  loadData() async {
-    final matchjson = await rootBundle.loadString("assets/files/matches.json");
-    final decodedData = jsonDecode(matchjson);
-    var matchesData = decodedData["matches"];
-    MatchModel.matches = List.from(matchesData)
-        .map<Match>((match) => Match.fromMap(match))
-        .toList();
-    setState(() {});
-  }
+  //Firebase
+  final auth = FirebaseAuth.instance;
+  final ref = FirebaseDatabase.instance.ref('matches');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
+        scrolledUnderElevation: 3,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -49,48 +40,81 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           size: 30,
         ),
-        title: const Text(
-          "Matches",
-          style: TextStyle(
-            fontSize: 30,
-            color: Colors.white,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.5,
-          ),
-        ),
+        title: (_selectedIndex == 0)
+            ? const Text(
+                "Matches",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.5,
+                ),
+              )
+            : const Text(
+                "My Tickets",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1.5,
+                ),
+              ),
         elevation: 0,
         centerTitle: false,
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 25, 0),
-            child: Icon(Icons.account_circle, color: Colors.white, size: 30),
+            padding: const EdgeInsets.fromLTRB(0, 0, 25, 0),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, MyRoutes.profileRoute);
+              },
+              child: const Icon(
+                Icons.account_circle,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
           ),
         ],
       ),
       body: (_selectedIndex == 0)
-          ? ListView.builder(
-              itemCount: MatchModel.matches.length,
-              itemBuilder: (context, index) {
-                return MatchWidget(
-                  match: MatchModel.matches[index],
-                );
-              },
+          ? Column(
+              children: [
+                Expanded(
+                  child: FirebaseAnimatedList(
+                    query: ref,
+                    itemBuilder: (context, snapshot, animation, index) {
+                      return MatchWidget(
+                        player1: snapshot.child('player1').value.toString(),
+                        player2: snapshot.child('player2').value.toString(),
+                        datetime: snapshot.child('datetime').value.toString(),
+                        location: snapshot.child('location').value.toString(),
+                        matchnum: int.parse(
+                            snapshot.child('matchnum').value.toString()),
+                        nowTicketCount: int.parse(
+                            snapshot.child('nowTicketCount').value.toString()),
+                        ticketPrice: int.parse(
+                            snapshot.child('ticketPrice').value.toString()),
+                        totalTicketCount: int.parse(snapshot
+                            .child('totalTicketCount')
+                            .value
+                            .toString()),
+                        tournamentName:
+                            snapshot.child('tournamentName').value.toString(),
+                      );
+                    },
+                  ),
+                ),
+              ],
             )
-          : ListView.builder(
-              itemCount: MatchModel.matches.length,
-              itemBuilder: (context, index) {
-                return MatchWidget(
-                  match: MatchModel.matches[index],
-                );
-              },
-            ),
+          : Column(children: const []),
       drawer: const MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,
-        selectedIconTheme: IconThemeData(
+        selectedIconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
             label: 'Matches',

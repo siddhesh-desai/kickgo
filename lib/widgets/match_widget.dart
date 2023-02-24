@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:kickgo/models/matches.dart';
 
 class MatchWidget extends StatelessWidget {
-  final Match match;
+  //Variables to fetch
+  final String player1;
+  final String player2;
+  final int matchnum;
+  final String tournamentName;
+  final String datetime;
+  final String location;
+  final int ticketPrice;
+  final int totalTicketCount;
+  final int nowTicketCount;
 
-  const MatchWidget({required this.match});
+  //Constructor
+  const MatchWidget(
+      {super.key,
+      required this.player1,
+      required this.player2,
+      required this.matchnum,
+      required this.datetime,
+      required this.tournamentName,
+      required this.totalTicketCount,
+      required this.nowTicketCount,
+      required this.ticketPrice,
+      required this.location});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(10, 14, 10, 0),
+      padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -18,7 +37,7 @@ class MatchWidget extends StatelessWidget {
               color: Colors.orange.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 7,
-              offset: const Offset(0, 0), // changes position of shadow
+              offset: const Offset(0, 0),
             ),
           ],
           image: const DecorationImage(
@@ -37,13 +56,15 @@ class MatchWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      match.player1,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 25,
+                    Flexible(
+                      child: Text(
+                        player1,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
                       ),
                     ),
                     const Text(
@@ -55,13 +76,15 @@ class MatchWidget extends StatelessWidget {
                         color: Colors.black54,
                       ),
                     ),
-                    Text(
-                      match.player2,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 25,
+                    Flexible(
+                      child: Text(
+                        player2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
                       ),
                     ),
                   ],
@@ -72,36 +95,40 @@ class MatchWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      "Match No: ${match.matchnum}, ${match.tournamentName} Tournament 2023",
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black45,
-                        fontSize: 13,
+                    Flexible(
+                      child: Text(
+                        "Match No: $matchnum, $tournamentName",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black45,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "${match.datetime} at ${match.location}",
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
+                    Flexible(
+                      child: Text(
+                        "$datetime at $location",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -115,12 +142,12 @@ class MatchWidget extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                       ),
                       onPressed: () {},
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                         child: Text(
-                          "Rs. 20",
+                          "Rs. $ticketPrice",
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                             color: Colors.black,
@@ -128,28 +155,6 @@ class MatchWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // TextButton(
-                    //   style: TextButton.styleFrom(
-                    //     side: BorderSide(
-                    //       width: 1,
-                    //       color: Colors.orangeAccent,
-                    //     ),
-                    //     backgroundColor: Colors.black87,
-                    //     alignment: Alignment.centerLeft,
-                    //   ),
-                    //   onPressed: () {},
-                    //   child: Padding(
-                    //     padding: EdgeInsets.fromLTRB(8, 1, 8, 1),
-                    //     child: Text(
-                    //       "Remind Later",
-                    //       style: TextStyle(
-                    //         fontWeight: FontWeight.bold,
-                    //         fontSize: 15,
-                    //         color: Colors.orangeAccent,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -159,23 +164,29 @@ class MatchWidget extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {},
-                      child: const Padding(
-                        padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
-                        child: Text(
-                          "Book Tickets",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                        child: nowTicketCount < totalTicketCount
+                            ? const Text(
+                                "Book Tickets",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              )
+                            : const Text(
+                                "Stadium Full",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
                       ),
                     )
                   ],
                 ),
               ),
             ],
-            // subtitle: Text(match.location),
-            // trailing: Text("Rs. ${match.ticketPrice.toString()}"),
           ),
         ),
       ),
