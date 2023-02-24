@@ -21,6 +21,9 @@ class _HomePageState extends State<HomePage> {
   final auth = FirebaseAuth.instance;
   final ref = FirebaseDatabase.instance.ref('matches');
 
+  //Searching
+  final searchFilter = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,28 +83,80 @@ class _HomePageState extends State<HomePage> {
       body: (_selectedIndex == 0)
           ? Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 2),
+                  child: TextFormField(
+                    controller: searchFilter,
+                    decoration: const InputDecoration(
+                      hintText: "Search Team",
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (String value) {
+                      setState(() {});
+                    },
+                  ),
+                ),
                 Expanded(
                   child: FirebaseAnimatedList(
                     query: ref,
+                    defaultChild: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
                     itemBuilder: (context, snapshot, animation, index) {
-                      return MatchWidget(
-                        player1: snapshot.child('player1').value.toString(),
-                        player2: snapshot.child('player2').value.toString(),
-                        datetime: snapshot.child('datetime').value.toString(),
-                        location: snapshot.child('location').value.toString(),
-                        matchnum: int.parse(
-                            snapshot.child('matchnum').value.toString()),
-                        nowTicketCount: int.parse(
-                            snapshot.child('nowTicketCount').value.toString()),
-                        ticketPrice: int.parse(
-                            snapshot.child('ticketPrice').value.toString()),
-                        totalTicketCount: int.parse(snapshot
-                            .child('totalTicketCount')
-                            .value
-                            .toString()),
-                        tournamentName:
-                            snapshot.child('tournamentName').value.toString(),
-                      );
+                      final player = snapshot.child('player1').value.toString();
+                      final playerr =
+                          snapshot.child('player2').value.toString();
+
+                      if (searchFilter.text.isEmpty) {
+                        return MatchWidget(
+                          player1: snapshot.child('player1').value.toString(),
+                          player2: snapshot.child('player2').value.toString(),
+                          datetime: snapshot.child('datetime').value.toString(),
+                          location: snapshot.child('location').value.toString(),
+                          matchnum: int.parse(
+                              snapshot.child('matchnum').value.toString()),
+                          nowTicketCount: int.parse(snapshot
+                              .child('nowTicketCount')
+                              .value
+                              .toString()),
+                          ticketPrice: int.parse(
+                              snapshot.child('ticketPrice').value.toString()),
+                          totalTicketCount: int.parse(snapshot
+                              .child('totalTicketCount')
+                              .value
+                              .toString()),
+                          tournamentName:
+                              snapshot.child('tournamentName').value.toString(),
+                        );
+                      } else if (player
+                              .toLowerCase()
+                              .contains(searchFilter.text.toLowerCase()) ||
+                          playerr
+                              .toLowerCase()
+                              .contains(searchFilter.text.toLowerCase())) {
+                        return MatchWidget(
+                          player1: snapshot.child('player1').value.toString(),
+                          player2: snapshot.child('player2').value.toString(),
+                          datetime: snapshot.child('datetime').value.toString(),
+                          location: snapshot.child('location').value.toString(),
+                          matchnum: int.parse(
+                              snapshot.child('matchnum').value.toString()),
+                          nowTicketCount: int.parse(snapshot
+                              .child('nowTicketCount')
+                              .value
+                              .toString()),
+                          ticketPrice: int.parse(
+                              snapshot.child('ticketPrice').value.toString()),
+                          totalTicketCount: int.parse(snapshot
+                              .child('totalTicketCount')
+                              .value
+                              .toString()),
+                          tournamentName:
+                              snapshot.child('tournamentName').value.toString(),
+                        );
+                      } else {
+                        return Container();
+                      }
                     },
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/utils/routes.dart';
 
 class MatchWidget extends StatelessWidget {
   //Variables to fetch
@@ -163,7 +164,11 @@ class MatchWidget extends StatelessWidget {
                           color: Colors.orangeAccent,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        if (nowTicketCount < totalTicketCount) {
+                          Navigator.pushNamed(context, MyRoutes.detailsRoute);
+                        }
+                      },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                         child: nowTicketCount < totalTicketCount
