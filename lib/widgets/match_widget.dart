@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kickgo/main.dart';
 import 'package:kickgo/utils/routes.dart';
 
 class MatchWidget extends StatelessWidget {
@@ -12,6 +13,7 @@ class MatchWidget extends StatelessWidget {
   final int ticketPrice;
   final int totalTicketCount;
   final int nowTicketCount;
+  final int matchid;
 
   //Constructor
   const MatchWidget(
@@ -24,6 +26,7 @@ class MatchWidget extends StatelessWidget {
       required this.totalTicketCount,
       required this.nowTicketCount,
       required this.ticketPrice,
+      required this.matchid,
       required this.location});
 
   @override
@@ -166,7 +169,23 @@ class MatchWidget extends StatelessWidget {
                       ),
                       onPressed: () {
                         if (nowTicketCount < totalTicketCount) {
-                          Navigator.pushNamed(context, MyRoutes.detailsRoute);
+                          MyApp.currMatchID = matchid;
+                          Navigator.pushNamed(
+                            context,
+                            MyRoutes.detailsRoute,
+                            arguments: {
+                              'matchid': matchid,
+                              'player1': player1,
+                              'player2': player2,
+                              'matchnum': matchnum,
+                              'datetime': datetime,
+                              'tournamentName': tournamentName,
+                              'totalTicketCount': totalTicketCount,
+                              'nowTicketCount': nowTicketCount,
+                              'ticketPrice': ticketPrice,
+                              'location': location,
+                            },
+                          );
                         }
                       },
                       child: Padding(

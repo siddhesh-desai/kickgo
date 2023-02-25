@@ -1,13 +1,35 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
 import '../utils/utils.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
+  const DetailsPage({super.key});
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  //For Ticket Buying
+  int ticketPurchased = 1;
+
   @override
   Widget build(BuildContext context) {
+    //Getting Arguments from previous page
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    int matchID = arguments['matchid'];
+    int matchnum = arguments['matchnum'];
+    String player1 = arguments['player1'];
+    String player2 = arguments['player2'];
+    String datetime = arguments['datetime'];
+    String tournamentName = arguments['tournamentName'];
+    String location = arguments['location'];
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffffffff),
+        backgroundColor: const Color(0xffffffff),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -18,26 +40,27 @@ class DetailsPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 children: [
                   Image(
-                    image: NetworkImage(
+                    image: const NetworkImage(
                         "https://th.bing.com/th/id/R.a2151984affcd64281acaffa06329631?rik=M49zvEKS9ZN4rg&riu=http%3a%2f%2fe1.365dm.com%2f17%2f09%2f16-9%2f20%2fskysports-premier-league-football-nike-ordem-pitch-stock-generic-general-view_4102302.jpg%3f20171006115508&ehk=ulKY2HNPJIqx0%2bRAHZinkVqGGKOEXJZ2p4q86mK3i7U%3d&risl=&pid=ImgRaw&r=0"),
                     height: MediaQuery.of(context).size.height * 0.4,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.cover,
                   ),
                   Container(
-                    margin: EdgeInsets.all(0),
-                    padding: EdgeInsets.all(0),
+                    margin: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 0.4,
                     decoration: BoxDecoration(
-                      color: Color(0x89000000),
+                      color: const Color(0x89000000),
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.zero,
-                      border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                      border:
+                          Border.all(color: const Color(0x4d9e9e9e), width: 1),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,12 +92,12 @@ class DetailsPage extends StatelessWidget {
                             Utils().toastMsg("Feature Coming Soon...");
                           },
                           child: Container(
-                            margin: EdgeInsets.all(0),
-                            padding: EdgeInsets.all(0),
+                            margin: const EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             width: 40,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: Color(0xff8bc34a),
+                              color: const Color(0xff8bc34a),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(4.0),
                             ),
@@ -94,18 +117,19 @@ class DetailsPage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   alignment: Alignment.topCenter,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(0),
+                  margin: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.65,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(16.0),
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                    border:
+                        Border.all(color: const Color(0x4d9e9e9e), width: 1),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 60),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -113,14 +137,14 @@ class DetailsPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "PTM Vs. RTM",
-                                textAlign: TextAlign.start,
+                                "$player1 Vs. $player2",
+                                textAlign: TextAlign.center,
                                 overflow: TextOverflow.clip,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 22,
@@ -130,14 +154,14 @@ class DetailsPage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "All the details of match here: All the details of match    here:All the details of match here:All the details of match here  :All the details of match here:All the details of match here:All the details of match here:",
+                                "This is match number $matchnum of Tournament $tournamentName to be played between $player1 and $player2. \n\nVenue: $location \nTime: $datetime",
                                 textAlign: TextAlign.justify,
                                 overflow: TextOverflow.clip,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 14,
@@ -148,16 +172,16 @@ class DetailsPage extends StatelessWidget {
                           ),
                           Container(
                             alignment: Alignment.centerLeft,
-                            margin: EdgeInsets.all(0),
-                            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+                            margin: const EdgeInsets.all(0),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                             width: MediaQuery.of(context).size.width,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xfff5f3f3),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.zero,
                             ),
-                            child: Align(
+                            child: const Align(
                               alignment: Alignment.center,
                               child: Text(
                                 "Book Tickets Now!",
@@ -173,38 +197,51 @@ class DetailsPage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.all(0),
-                                  padding: EdgeInsets.all(0),
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x00ffffff),
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(4.0),
-                                    border: Border.all(
-                                        color: Color(0xffa6a2a2), width: 1),
-                                  ),
-                                  child: Icon(
-                                    Icons.remove,
-                                    color: Color(0xff212435),
-                                    size: 24,
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (ticketPurchased == 1) {
+                                        Utils().toastMsg(
+                                            "You must purchase atleast One Ticket");
+                                      } else {
+                                        ticketPurchased -= 1;
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.all(0),
+                                    padding: const EdgeInsets.all(0),
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0x00ffffff),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(4.0),
+                                      border: Border.all(
+                                          color: const Color(0xffa6a2a2),
+                                          width: 1),
+                                    ),
+                                    child: const Icon(
+                                      Icons.remove,
+                                      color: Color(0xff212435),
+                                      size: 24,
+                                    ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 0, horizontal: 16),
                                   child: Text(
-                                    "2",
+                                    ticketPurchased.toString(),
                                     textAlign: TextAlign.start,
                                     overflow: TextOverflow.clip,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontStyle: FontStyle.normal,
                                       fontSize: 18,
@@ -212,22 +249,35 @@ class DetailsPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.all(0),
-                                  padding: EdgeInsets.all(0),
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x00ffffff),
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(4.0),
-                                    border: Border.all(
-                                        color: Color(0xffa6a2a2), width: 1),
-                                  ),
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Color(0xff212435),
-                                    size: 24,
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (ticketPurchased == 4) {
+                                        Utils().toastMsg(
+                                            "You can purchase maximum 4 tickets");
+                                      } else {
+                                        ticketPurchased += 1;
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.all(0),
+                                    padding: const EdgeInsets.all(0),
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0x00ffffff),
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadius.circular(4.0),
+                                      border: Border.all(
+                                          color: const Color(0xffa6a2a2),
+                                          width: 1),
+                                    ),
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: Color(0xff212435),
+                                      size: 24,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -240,18 +290,23 @@ class DetailsPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: MaterialButton(
-                    onPressed: () {},
-                    color: Color(0xff8bc34a),
+                    onPressed: () {
+                      Utils().toastMsg("Booking not supported yet!");
+                    },
+                    color: const Color(0xff8bc34a),
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24.0),
                     ),
-                    padding: EdgeInsets.all(16),
-                    child: Text(
+                    padding: const EdgeInsets.all(16),
+                    textColor: const Color(0xffffffff),
+                    height: 45,
+                    minWidth: MediaQuery.of(context).size.width,
+                    child: const Text(
                       "BOOK NOW",
                       style: TextStyle(
                         fontSize: 14,
@@ -259,9 +314,6 @@ class DetailsPage extends StatelessWidget {
                         fontStyle: FontStyle.normal,
                       ),
                     ),
-                    textColor: Color(0xffffffff),
-                    height: 45,
-                    minWidth: MediaQuery.of(context).size.width,
                   ),
                 ),
               ),

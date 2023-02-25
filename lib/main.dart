@@ -23,6 +23,7 @@ class MyApp extends StatefulWidget {
   static String name = "";
 
   static String email = "";
+  static int currMatchID = 0;
 
   const MyApp({super.key});
 

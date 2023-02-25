@@ -115,6 +115,8 @@ class _HomePageState extends State<HomePage> {
                           location: snapshot.child('location').value.toString(),
                           matchnum: int.parse(
                               snapshot.child('matchnum').value.toString()),
+                          matchid: int.parse(
+                              snapshot.child('matchID').value.toString()),
                           nowTicketCount: int.parse(snapshot
                               .child('nowTicketCount')
                               .value
@@ -139,6 +141,8 @@ class _HomePageState extends State<HomePage> {
                           player2: snapshot.child('player2').value.toString(),
                           datetime: snapshot.child('datetime').value.toString(),
                           location: snapshot.child('location').value.toString(),
+                          matchid: int.parse(
+                              snapshot.child('matchID').value.toString()),
                           matchnum: int.parse(
                               snapshot.child('matchnum').value.toString()),
                           nowTicketCount: int.parse(snapshot
